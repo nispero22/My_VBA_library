@@ -1,0 +1,29 @@
+Option Explicit
+
+Sub QuessTheNumber()
+Dim n As Integer, G As Double
+On Error GoTo Here
+n = WorksheetFunction.RandBetween(1, 10)
+Do
+    Do
+        G = InputBox("I'm thinking of a number between 1 and 10. Can you guess the number I have chosen ?")
+        If G <= 10 And G >= 0 And CStr(CInt(G)) = G Then
+            Exit Do
+        ElseIf G > 10 Then
+            MsgBox " The number can not exceed 10 ! Try again"
+        ElseIf G < 1 Then
+            MsgBox " The number must not be lower than 1. Try again"
+        ElseIf CStr(CInt(G)) <> G Then
+            MsgBox "Guess must be an integer ! Try again"
+        End If
+    Loop
+    
+    If G = n Then Exit Do
+    MsgBox ("Guess again!")
+Loop
+MsgBox ("Congratulation !You guessed the number'")
+Exit Sub
+
+Here:
+MsgBox " An error has occured. Try again"
+End Sub
